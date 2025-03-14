@@ -25,7 +25,7 @@ public class Workout {
     @Column(name = "workout_name", length = 20, nullable = false)
     private String workoutName;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_plan_id", unique = true, nullable = false)
     private UserWorkoutPlan userWorkoutPlan;
 
