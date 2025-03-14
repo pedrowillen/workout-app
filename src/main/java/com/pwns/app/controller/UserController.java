@@ -8,10 +8,9 @@ import com.pwns.app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,5 +23,24 @@ public class UserController {
     public ResponseEntity<UserResponse> register(@RequestBody UserRequest request) {
         User savedUser = userService.save(UserMapper.toUser(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toUserResponse(savedUser));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserResponse>> getAll() {
+        List<UserResponse> users = userService.findAll()
+                .stream()
+                .map(UserMapper::toUserResponse)
+                .toList();
+
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> findById(@PathVariable Long id) {
+        return userService.findById(id)
+                .map(user -> ResponseEntity.ok(UserMapper.toUserResponse(user)))
+                .orElse(
+                        ResponseEntity.notFound().build()
+                );
     }
 }
