@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -26,7 +27,7 @@ public class Workout {
     private String workoutName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "workout_plan_id", unique = true, nullable = false)
+    @JoinColumn(name = "workout_plan_id", nullable = false)
     private UserWorkoutPlan userWorkoutPlan;
 
     @Column(name = "workout_desc", columnDefinition = "TEXT")
@@ -43,4 +44,7 @@ public class Workout {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "WorkoutExercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<WorkoutExercise> workoutExercises;
 }
