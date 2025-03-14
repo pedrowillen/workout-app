@@ -3,16 +3,14 @@ package com.pwns.app.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pwns.app.utils.Sex;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
