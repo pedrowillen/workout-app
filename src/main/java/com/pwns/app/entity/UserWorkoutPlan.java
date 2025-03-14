@@ -48,4 +48,7 @@ public class UserWorkoutPlan {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @OneToOne(mappedBy = "userWorkoutPlan", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Workout workout;
+
 }
