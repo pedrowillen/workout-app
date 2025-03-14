@@ -9,34 +9,37 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "workout_exercises")
-public class WorkoutExercise {
+@Table(name = "exercise_sets")
+public class ExerciseSet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "workout_id", nullable = false)
-    private Workout workout;
+    @JoinColumn(name = "workout_exercise_id", nullable = false)
+    private WorkoutExercise exercise;
 
-    @Column(name = "exercise_name", length = 20, nullable = false)
-    private String exerciseName;
+    @Column(name = "set_number", nullable = false)
+    private Integer setNumberIndex;
 
-    @Column(name = "interval", nullable = false)
-    private Integer intervalSeconds;
+    @Column(name = "weight", nullable = false)
+    private Float weight;
 
-    @Column(name = "observation", columnDefinition = "TEXT")
-    private String observation; /* type text */
+    @Column(name = "reps", nullable = false)
+    private Integer reps;
 
-    @Column(name = "sets", nullable = false)
-    private Integer setsQuantity;
+    @Column(name = "reps_in_reserve", nullable = false)
+    private Integer repsInReserve;
+
+    @Column(name = "notes", columnDefinition = "TEXT")
+    private String notes; /* type text */
 
     @CreationTimestamp
     @Column(name = "created_at")
@@ -46,6 +49,4 @@ public class WorkoutExercise {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "workoutExercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ExerciseSet> sets;
 }
