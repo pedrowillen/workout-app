@@ -29,13 +29,13 @@ public class WorkoutExercise {
     @Column(name = "exercise_name", length = 20, nullable = false)
     private String exerciseName;
 
-    @Column(name = "interval", nullable = false)
+    @Column(name = "interval_seconds", nullable = false)
     private Integer intervalSeconds;
 
     @Column(name = "observation", columnDefinition = "TEXT")
     private String observation; /* type text */
 
-    @Column(name = "sets", nullable = false)
+    @Column(name = "sets_quantity", nullable = false)
     private Integer setsQuantity;
 
     @CreationTimestamp
@@ -46,6 +46,6 @@ public class WorkoutExercise {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ExerciseSet> sets;
 }
