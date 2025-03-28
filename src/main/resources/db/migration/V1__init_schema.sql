@@ -1,5 +1,5 @@
 CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -14,8 +14,8 @@ CREATE TABLE users (
 );
 
 CREATE TABLE users_workout_plans (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER UNIQUE NOT NULL REFERENCES users(id),
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     periodization_weeks INTEGER NOT NULL,
     period_start DATE,
     period_end DATE,
@@ -25,9 +25,9 @@ CREATE TABLE users_workout_plans (
 );
 
 CREATE TABLE workouts (
-    id SERIAL PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     workout_name VARCHAR(20) NOT NULL,
-    workout_plan_id INTEGER NOT NULL REFERENCES users_workout_plans(id),
+    workout_plan_id BIGINT NOT NULL REFERENCES users_workout_plans(id) ON DELETE CASCADE,
     workout_desc TEXT,
     workout_technique VARCHAR(50),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -35,8 +35,8 @@ CREATE TABLE workouts (
 );
 
 CREATE TABLE workout_exercises (
-    id SERIAL PRIMARY KEY,
-    workout_id INTEGER NOT NULL REFERENCES workouts(id),
+    id BIGSERIAL PRIMARY KEY,
+    workout_id BIGINT NOT NULL REFERENCES workouts(id) ON DELETE CASCADE,
     exercise_name VARCHAR(20) NOT NULL,
     interval_seconds INTEGER NOT NULL,
     observation TEXT,
@@ -46,8 +46,8 @@ CREATE TABLE workout_exercises (
 );
 
 CREATE TABLE exercise_sets (
-    id SERIAL PRIMARY KEY,
-    workout_exercise_id INTEGER NOT NULL REFERENCES workout_exercises(id),
+    id BIGSERIAL PRIMARY KEY,
+    workout_exercise_id BIGINT NOT NULL REFERENCES workout_exercises(id) ON DELETE CASCADE,
     set_number INTEGER NOT NULL,
     weight REAL NOT NULL,
     reps INTEGER NOT NULL,
