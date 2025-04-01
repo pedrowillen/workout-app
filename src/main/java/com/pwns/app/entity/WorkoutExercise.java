@@ -44,6 +44,7 @@ public class WorkoutExercise {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Getter
     @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ExerciseSet> sets;
 }
