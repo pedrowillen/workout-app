@@ -13,12 +13,16 @@ spring:
     show-sql: true
     open-in-view: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 
   flyway:
     enabled: true
+
+  transaction:
+    default-timeout: 30
 
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.engine.transaction.internal.TransactionImpl: DEBUG
