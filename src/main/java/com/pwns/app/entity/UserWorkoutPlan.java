@@ -3,6 +3,7 @@ package com.pwns.app.entity;
 import com.pwns.app.utils.TrainingType;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -50,4 +51,8 @@ public class UserWorkoutPlan {
     @OneToMany(mappedBy = "userWorkoutPlan", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Workout> workouts;
 
+    @Override
+    public String toString() {
+        return "user_id: " + id + ". user: " + user.getName();
+    }
 }
