@@ -10,7 +10,9 @@ import com.pwns.app.mapper.UserWorkoutPlanMapper;
 import com.pwns.app.repository.UserRepository;
 import com.pwns.app.service.UserService;
 import com.pwns.app.service.UserWorkoutPlanService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,9 +64,10 @@ public class UserWorkoutPlanController {
         return ResponseEntity.ok(workoutPlanResponse);
     }
 
+    @Transactional
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteWorkoutPlanById(@PathVariable Long id) {
-        workoutPlanService.deleteWorkoutPlanById(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        workoutPlanService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
