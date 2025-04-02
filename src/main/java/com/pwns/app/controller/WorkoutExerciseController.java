@@ -8,7 +8,9 @@ import com.pwns.app.exception.WorkoutNotFoundException;
 import com.pwns.app.mapper.WorkoutExerciseMapper;
 import com.pwns.app.repository.WorkoutRepository;
 import com.pwns.app.service.WorkoutExerciseService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +51,13 @@ public class WorkoutExerciseController {
                 .toList();
 
         return ResponseEntity.ok(workoutExerciseResponses);
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        workoutExerciseService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

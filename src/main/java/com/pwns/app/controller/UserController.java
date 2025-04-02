@@ -5,6 +5,7 @@ import com.pwns.app.dto.response.UserResponse;
 import com.pwns.app.entity.User;
 import com.pwns.app.mapper.UserMapper;
 import com.pwns.app.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,9 +45,10 @@ public class UserController {
                 );
     }
 
+    @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
         userService.deleteUser(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

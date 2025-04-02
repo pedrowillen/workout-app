@@ -3,6 +3,7 @@ package com.pwns.app.service;
 import com.pwns.app.entity.User;
 import com.pwns.app.exception.UserNotFoundException;
 import com.pwns.app.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,11 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    @Transactional
     public void deleteUser(Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
+
         userRepository.delete(user);
     }
 }

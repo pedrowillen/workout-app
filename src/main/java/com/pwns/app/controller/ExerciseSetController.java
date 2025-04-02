@@ -10,9 +10,11 @@ import com.pwns.app.exception.WorkoutNotFoundException;
 import com.pwns.app.mapper.ExerciseSetMapper;
 import com.pwns.app.repository.WorkoutExerciseRepository;
 import com.pwns.app.service.ExerciseSetService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,5 +52,12 @@ public class ExerciseSetController {
                 .toList();
 
         return ResponseEntity.ok(exerciseSetResponses);
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        exerciseSetService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

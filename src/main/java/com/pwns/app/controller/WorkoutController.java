@@ -11,7 +11,9 @@ import com.pwns.app.mapper.WorkoutMapper;
 import com.pwns.app.service.UserService;
 import com.pwns.app.service.UserWorkoutPlanService;
 import com.pwns.app.service.WorkoutService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,6 +55,13 @@ public class WorkoutController {
         Workout createdWorkout = workoutService.save(WorkoutMapper.toWorkout(request, userWorkoutPlan));
 
         return ResponseEntity.ok(WorkoutMapper.toWorkoutResponse(createdWorkout));
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        workoutService.deleteById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }
