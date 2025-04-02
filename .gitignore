@@ -1,6 +1,6 @@
-HELP.md
+spring-api/HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
+!spring-api/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -14,7 +14,9 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
+spring-api/.idea
 .idea
+.idea_modules
 *.iws
 *.iml
 *.ipr
@@ -31,3 +33,18 @@ build/
 
 ### VS Code ###
 .vscode/
+.settings/
+
+### React Native ###
+# Dependencies
+react-native-dev/node_modules/
+react-native-dev/.expo/
+react-native-dev/.expo-shared/
+# Builds
+react-native-dev/android/build/
+react-native-dev/android/app/build/
+react-native-dev/ios/build/
+# Cache/ambiente
+react-native-dev/.env
+react-native-dev/.metro-cache/
+react-native-dev/*.log
