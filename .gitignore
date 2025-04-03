@@ -1,10 +1,19 @@
+### Spring Boot ###
 spring-api/HELP.md
 target/
 !spring-api/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+### IDEs ###
+# IntelliJ
+.idea/
+.idea_modules/
+*.iws
+*.iml
+*.ipr
+
+# STS
 .apt_generated
 .classpath
 .factorypath
@@ -13,15 +22,7 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-spring-api/.idea
-.idea
-.idea_modules
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
@@ -31,20 +32,39 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# VS Code
 .vscode/
 .settings/
 
 ### React Native ###
 # Dependencies
-react-native-dev/node_modules/
-react-native-dev/.expo/
-react-native-dev/.expo-shared/
+react-native-dev/**/node_modules/
+react-native-dev/**/.expo/
+react-native-dev/**/.expo-shared/
+
 # Builds
-react-native-dev/android/build/
-react-native-dev/android/app/build/
-react-native-dev/ios/build/
-# Cache/ambiente
-react-native-dev/.env
-react-native-dev/.metro-cache/
-react-native-dev/*.log
+react-native-dev/**/android/build/
+react-native-dev/**/android/app/build/
+react-native-dev/**/ios/build/
+
+# Cache/Environment
+react-native-dev/**/.env
+react-native-dev/**/.env*.local
+react-native-dev/**/.metro-cache/
+react-native-dev/**/*.log
+
+# Debug/OS
+react-native-dev/**/npm-debug.*
+react-native-dev/**/yarn-debug.*
+react-native-dev/**/yarn-error.*
+react-native-dev/**/.DS_Store
+react-native-dev/**/*.pem
+react-native-dev/**/*.tsbuildinfo
+
+# Native files
+react-native-dev/**/*.orig.*
+react-native-dev/**/*.jks
+react-native-dev/**/*.p8
+react-native-dev/**/*.p12
+react-native-dev/**/*.key
+react-native-dev/**/*.mobileprovision
