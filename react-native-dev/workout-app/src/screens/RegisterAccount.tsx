@@ -1,34 +1,53 @@
-import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
-import { TextInput } from 'react-native-paper';
-import React from 'react';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { TextInput } from "react-native-paper";
+import React from "react";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
-export default function LoginScreen({ navigation }: Props) {
+export default function RegisterAccount({ navigation }: Props) {
     const [text, setText] = React.useState('');
+    const [nameText, setNameText] = React.useState('');
     const [showPassword, setShowPassword] = React.useState(false);
     const [password, setPassword] = React.useState('');
+
+    const handleLoginScreen = () => {
+        console.log("Navegar para login screen");
+        navigation.navigate('Login');
+    }
+
+    const handleRegister = () => {
+        console.log("Registrar");
+        // navigation.navigate();
+    }
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-    const handleForgotPassword = () => {
-        console.log("Navegar para tela de recuperação");
-        // navigation.navigate('ForgotPassword');
-    };
-    const handleRegisterAccount = () => {
-        console.log("Navegar para tela de registrar");
-        navigation.navigate('RegisterAccount');
-    }
 
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.textContainer}>
-                <Text style={styles.text}>Entre com sua Conta</Text>
+                <Text style={styles.text}>Registre a sua Conta</Text>
             </View>
 
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.input}
+                    mode="outlined"
+                    placeholder="Nome e Sobrenome"
+                    placeholderTextColor="#777"
+                    underlineColor="#777"
+                    selectionColor="#fff"
+                    activeOutlineColor="#fff"
+                    textColor="#fff"
+                    value={nameText}
+                    onChangeText={text => setNameText(text)}
+                    left={<TextInput.Icon icon="account" color="#fff" />}
+                />
+            </View>
             <View style={styles.inputContainer}>
                 <TextInput
                     style={styles.input}
@@ -41,7 +60,7 @@ export default function LoginScreen({ navigation }: Props) {
                     textColor="#fff"
                     value={text}
                     onChangeText={text => setText(text)}
-                    left={<TextInput.Icon icon="email" color="#fff" style={styles.icon}/>}
+                    left={<TextInput.Icon icon="email" color="#fff" />}
                 />
             </View>
             <View style={styles.inputContainer}>
@@ -71,24 +90,15 @@ export default function LoginScreen({ navigation }: Props) {
 
             <TouchableOpacity 
                 style={styles.bttn}
-                onPress={() => navigation.navigate('UserInfo')}
+                // onPress={() => navigation.navigate('UserInfo')}
             >
-                <Text style={styles.bttnText}>Login</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity 
-                onPress={handleForgotPassword}
-                // accessible={true}
-                // accessibilityLabel="Recuperar senha"
-                // accessibilityHint="Navega para tela de recuperação de senha"
-            >
-                <Text style={styles.forgotPasswordText}>Esqueceu sua senha?</Text>
+                <Text style={styles.bttnText}>Criar conta</Text>
             </TouchableOpacity>
 
             <View style={styles.footer}>
-                <Text style={styles.footerText}>Não possui conta? </Text>
-                <TouchableOpacity onPress={handleRegisterAccount}>
-                    <Text style={styles.registerLink}>Registre aqui.</Text>
+                <Text style={styles.footerText}>Já possui conta? </Text>
+                <TouchableOpacity onPress={handleLoginScreen}>
+                    <Text style={styles.anchorLink}>Faça login aqui.</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -96,6 +106,20 @@ export default function LoginScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      textContainer: {
+        width: '80%',
+        marginBottom: 24
+    },
+    text: {
+        color: '#fff',
+        fontSize: 36,
+    },
     footer: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -106,48 +130,26 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 10,
     },
-        footerText: {
+    footerText: {
         color: '#fff',
         fontSize: 16,
     },
-        registerLink: {
+    anchorLink: {
         color: '#b4d343',
         fontSize: 16,
         fontWeight: 'bold',
         textDecorationLine: 'underline',
     },
-    forgotPasswordText: {
-        color: '#b4d343',
-        fontSize: 16,
-        textDecorationLine: 'underline',
-        marginTop: 12,
-    },
-    icon: {
-    },
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-    },
-    textContainer: {
-        width: '80%',
-        marginBottom: 24
-    },
-    container: {
-      flex: 1,
-      backgroundColor: '#000',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    text: {
-        color: '#fff',
-        fontSize: 36,
     },
     input: {
         backgroundColor: '#2e2e2e',
         display: 'flex',
         width: '80%',
         margin: 6,
-      },
+    },
     bttn: {
         backgroundColor: '#b4d343',
         width: '80%',
