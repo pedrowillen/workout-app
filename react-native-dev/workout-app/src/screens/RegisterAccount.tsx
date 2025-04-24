@@ -1,11 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-paper";
 import React from "react";
+import { RootStackParamList } from "../navigation/types";
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'RegisterAccount'>;
 
 export default function RegisterAccount({ navigation }: Props) {
     const [text, setText] = React.useState('');

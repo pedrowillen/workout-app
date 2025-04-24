@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
 import { TextInput } from 'react-native-paper';
 import React from 'react';
+import { RootStackParamList } from '../navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -71,7 +71,7 @@ export default function LoginScreen({ navigation }: Props) {
 
             <TouchableOpacity 
                 style={styles.bttn}
-                onPress={() => navigation.navigate('UserInfo')}
+                onPress={() => navigation.navigate('AppContainer')}
             >
                 <Text style={styles.bttnText}>Login</Text>
             </TouchableOpacity>
