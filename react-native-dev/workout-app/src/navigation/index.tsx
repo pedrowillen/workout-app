@@ -4,6 +4,7 @@ import { RootStackParamList } from "./types";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterAccount from "../screens/RegisterAccount";
 import AppContainerNavigator from "./AppContainer";
+import OnboardingNavigator from "./Onboarding";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -24,6 +25,11 @@ export default function RootNavigator() {
             <Stack.Screen 
                 name="AppContainer" 
                 component={AppContainerNavigator}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+                name="Onboarding" 
+                component={OnboardingNavigator}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>

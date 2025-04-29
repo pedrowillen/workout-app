@@ -23,6 +23,10 @@ export default function LoginScreen({ navigation }: Props) {
         navigation.navigate('RegisterAccount');
     }
 
+    const handleFirstEntryOnRegister = () => {
+        navigation.navigate('Onboarding');
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.textContainer}>
@@ -71,7 +75,8 @@ export default function LoginScreen({ navigation }: Props) {
 
             <TouchableOpacity 
                 style={styles.bttn}
-                onPress={() => navigation.navigate('AppContainer')}
+                // onPress={() => navigation.navigate('AppContainer')}
+                onPress={handleFirstEntryOnRegister}
             >
                 <Text style={styles.bttnText}>Login</Text>
             </TouchableOpacity>
